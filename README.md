@@ -90,7 +90,7 @@ The manifest should include version information to help agents handle changes:
 
 ## Contributing
 
-We welcome contributions! Please read our contributing guidelines and submit pull requests to help improve this specification.
+We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) and submit pull requests to help improve this specification.
 
 ## License
 
