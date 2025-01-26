@@ -21,11 +21,25 @@ You can think of an agent manifest as an expanded version of a site map, offerin
 
 This approach lets agents understand both the structure of your website and the specifics of each endpoint, reducing guesswork and making automated interactions more reliable.
 
-## File Location
+## Key Technical Requirements
 
-```URL
-https://example.com/agents.json
-```
+- Must be a UTF-8 encoded plain text file in JSON format
+- Must be located at a well-known location:
+  - Primary: `/agents.json` at the root directory (e.g., `example.com/agents.json`)
+  - Alternative: Can be specified via HTTP header `X-Agent-Manifest: <URL>`
+- File size should not exceed 2MB
+- Must return content-type `application/json`
+- Must be publicly accessible without authentication (the manifest file itself)
+- Can use HTTP caching headers (e.g., `Cache-Control`, `ETag`)
+- Should handle conditional requests (If-Modified-Since, If-None-Match)
+- Must maintain backwards compatibility within major versions
+- Should be served over HTTPS
+- Can reference additional files for detailed documentation (similar to sitemap.xml references)
+- Must be valid JSON and parseable by standard JSON parsers
+- Should include a required minimal set of fields:
+  - version
+  - last_modified
+  - supported_agent_versions
 
 ## Key Components
 
@@ -35,7 +49,6 @@ https://example.com/agents.json
 - Rate limiting and concurrent connection limits
 - Best practices for interaction
 - Required headers or specific request formats
-- Supported response formats (JSON, XML, etc.)
 
 ### Authentication
 
@@ -78,15 +91,6 @@ https://example.com/agents.json
 - Data usage restrictions
 - Regional availability
 - Required legal disclaimers
-
-## Version Control
-
-The manifest should include version information to help agents handle changes:
-
-- Schema version
-- API versions supported
-- Deprecation notices
-- Change log references
 
 ## Contributing
 
